@@ -1,0 +1,4 @@
+build-secrets:
+    global:
+        - source: .npmrc
+          dest: .npmrc

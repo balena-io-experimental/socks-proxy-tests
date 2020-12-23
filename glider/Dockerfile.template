@@ -1,0 +1,31 @@
+# =========================================
+# Build Image
+# =========================================
+
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine-golang:build as build
+
+# This value is a tag or a git commit hash
+# ENV GLIDER_VERSION=v0.13.0
+
+RUN go get https://github.com/nadoo/glider/
+
+RUN mkdir -p "${GOPATH}/src/github.com/nadoo/" \
+	&& cd "${GOPATH}/src/github.com/nadoo/" \
+	&& git clone https://github.com/nadoo/glider.git \
+	&& cd glider \
+	&& git checkout -b build "${GLIDER_VERSION}" \
+	&& GO111MODULE=on go get -v .
+
+# =========================================
+# Final Base Image
+# =========================================
+
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine:latest
+
+COPY --from=build "/go/bin/glider" "/usr/bin/glider"
+
+WORKDIR /usr/src/app
+COPY *.conf ./
+COPY start.sh ./
+
+CMD ["glider", "-listen", ":8123", "-verbose"]
