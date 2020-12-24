@@ -8,5 +8,5 @@ services:
       io.balena.features.balena-api: 1
       io.balena.features.supervisor-api: 1
       io.balena.features.dbus: '1'
-  glider:
-    build: ./glider
+  # glider:
+  #   build: ./glider
