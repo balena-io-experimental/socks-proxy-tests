@@ -3,5 +3,5 @@ ExecStopSucess=../logic/scripts/test-done.sh
 ExecStopFail=../logic/scripts/test-done.sh
 Name=Quick test
 Description=quick test inside container
-Tests=test-01-cli
+Tests=balena-login, balena-create-app, balena-download-image, balena-os-configure, flash-dut, poweron-dut, check-dut-dashboard, reboot-dut 
 Timeout=5000

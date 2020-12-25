@@ -1,0 +1,5 @@
+[Test]
+WorkingDirectory=/usr/src/core/logic/scripts
+ExecStart=balena os configure /tmp/raspberrypi3.img -a socks-device --config-network ethernet
+Name=balena os configure
+Type=simple
