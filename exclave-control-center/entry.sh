@@ -1,17 +1,16 @@
 #!/bin/bash
 
-rm  -R /var/run/docker
+rm -R /var/run/docker
 rm /var/run/docker.sock
 
 set -eu
-# rc-update add docker boot.
 
 # https://docs.docker.com/engine/reference/commandline/dockerd/
-dockerd &
-
-sleep 5
-
-# service docker start
+dockerd & sleep 5
 
 # cargo run -- -c /usr/src/core/tests
 tail -f /dev/null
+
+# Alpine specific Docker commands
+# service docker start
+# rc-update add docker boot.

@@ -1,61 +1,50 @@
-# FROM debian:buster-slim
 FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine-node:12-build
 
 # build args (override with --build-arg NAME=VAL)
 ARG RUST_VERSION=1.31
-# ARG NODE_VERSION=12.6.0
-ARG BALENA_CLI_VERSION=12.32.0
+# ARG BALENA_CLI_VERSION=12.32.0
 ARG EXCLAVE_VERSION=v0.2.6
 
-# set debconf to run non-interactively
-# ENV DEBIAN_FRONTEND noninteractive
 ENV UDEV=1
 ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 
 # hadolint ignore=DL3008, added nano for debugging, remove in final build
-RUN apk add --update docker \
+RUN apk add --no-cache \
     git \
-    nano \
     ca-certificates \
-    curl \
-	rust cargo musl-dev
+    rust \
+    cargo \
+    musl-dev \
+    nano
 
 # set the SHELL option -o pipefail before RUN with a pipe in
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# use the official docker-ce installer that only supports up to buster for now
-# install balena cli
-# RUN curl -fsSL https://get.docker.com | bash && \
-
-RUN npm install balena-cli@${BALENA_CLI_VERSION} -g --production --unsafe-perm 
-# RUN  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y --default-toolchain ${RUST_VERSION}
-
 # overlay2 requires a docker volume for graph
-VOLUME /var/lib/docker
+# VOLUME /var/lib/docker
 
 # add rust to path
 ENV PATH /root/.cargo/bin:${PATH}
 
-# install nvm with node and npm
-# RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-
-# add npm to path
-# ENV PATH /root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}
-
 WORKDIR /usr/src/exclave
-
+exclave-control-center/node_modules
 # clone exclave
 RUN git clone https://github.com/exclave/exclave . && \
     git checkout ${EXCLAVE_VERSION} && \
-    cargo build
+    cargo build 
+
+# install balena cli
+# RUN npm install balena-cli@${BALENA_CLI_VERSION} -g --production --unsafe-perm
+
+COPY package* /usr/src/core/
+
+# NPM install (Don't merge this RUN line, took me hours of debugging to see what was going wrong when it was paired up)
+RUN res=0; ( cp /run/secrets/.npmrc /usr/src/core/ && npm install --prefix /usr/src/core/ && npm link balena-cli ) || res=1; rm /usr/src/core/.npmrc; exit $res
 
 # copy source files
 COPY . /usr/src/core/
 
-# NPM install (Don't merge this RUN line, took me hours of debugging to see what was going wrong when it was paired up)
-RUN res=0; ( cp /run/secrets/.npmrc /usr/src/core/ && npm install --prefix /usr/src/core/ ) || res=1; rm /usr/src/core/.npmrc; exit $res 
-
-# enable execute permissions for scripts 
+# enable execute permissions for scripts
 RUN chmod +x /usr/src/core/entry.sh && \
     chmod +x /usr/src/core/logic/scripts/*.sh && \
     chmod +x /usr/src/core/logic/scripts/*.bash
