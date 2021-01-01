@@ -1,0 +1,7 @@
+[Test]
+WorkingDirectory=/usr/src/core/logic/balenaSDK
+ExecStart=node reboot.js
+Name=Reboot the DUT through balenaSDK
+ExecStopSucess=node balenasdk.js
+require=balena-os-configure, testbot-flash-dut, supervisor-host-config
+Type=simple

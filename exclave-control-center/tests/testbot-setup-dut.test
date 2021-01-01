@@ -1,0 +1,5 @@
+[Test]
+WorkingDirectory=/usr/src/core/logic/testbotSDK
+ExecStart=echo "testbot.setup()" | node testbot.js ${REPL_HOST}:5001 
+Name=Setup the DUT
+Type=simple

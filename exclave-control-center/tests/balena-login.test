@@ -1,5 +1,4 @@
 [Test]
-WorkingDirectory=/usr/src/core/logic/scripts
 ExecStart=balena login --token "${CLI_API_KEY}"
 Name=balena login with token
 Type=simple

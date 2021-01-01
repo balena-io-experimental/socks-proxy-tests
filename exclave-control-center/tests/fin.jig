@@ -2,5 +2,5 @@
 Name=Dev Jig
 Description=Development Jig 
 TestFile=/etc
-DefaultScenario=socks-proxy
+DefaultScenario=testing
 DefaultWorkingDirectory=./
