@@ -13,21 +13,21 @@ const testbotHat = new TestBotHat();
 const deviceInteractor = new RaspberryPi(testbotHat);
 
 try {
-	async () => {
-		console.log(`Setting up DUT`)
-		await testbotHat.setup()
-		
-		console.log(`Flashing the DUT`)
-		await deviceInteractor.flashFromFile("/tmp/raspberrypi3.img");
-		
-		console.log(`Powering up DUT`)
-		await deviceInteractor.powerOn();
-		
-		console.log(`Test successful`)
-		//await testbotHat.teardown(true)
-		return 0
-	}
+  async () => {
+    console.log(`Setting up DUT`)
+    await testbotHat.setup()
+    
+    console.log(`Flashing the DUT`)
+    await deviceInteractor.flashFromFile("/tmp/raspberrypi3.img");
+    
+    console.log(`Powering up DUT`)
+    await deviceInteractor.powerOn();
+
+    console.log(`Test successful`)
+    //await testbotHat.teardown(true)
+    return 0
+  }
 } catch(err) {
-	console.log(`Test Unsuccessful: ${err}`)
-	return 1
+  console.log(`Test Unsuccessful: ${err}`)
+  return 1
 }

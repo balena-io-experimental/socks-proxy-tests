@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+	"test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@balena/testbot": "^1.7.2",
-    "balena-cli": "12.32.0",
     "balena-sdk": "^15.20.0"
   }
 }

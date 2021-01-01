@@ -2,8 +2,8 @@ FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine-node:12-build
 
 # build args (override with --build-arg NAME=VAL)
 ARG RUST_VERSION=1.31
-# ARG BALENA_CLI_VERSION=12.32.0
 ARG EXCLAVE_VERSION=v0.2.6
+ARG BALENA_CLI_VERSION=12.32.0
 
 ENV UDEV=1
 ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
@@ -27,19 +27,19 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV PATH /root/.cargo/bin:${PATH}
 
 WORKDIR /usr/src/exclave
-exclave-control-center/node_modules
+
 # clone exclave
 RUN git clone https://github.com/exclave/exclave . && \
     git checkout ${EXCLAVE_VERSION} && \
     cargo build 
 
-# install balena cli
-# RUN npm install balena-cli@${BALENA_CLI_VERSION} -g --production --unsafe-perm
-
 COPY package* /usr/src/core/
 
 # NPM install (Don't merge this RUN line, took me hours of debugging to see what was going wrong when it was paired up)
-RUN res=0; ( cp /run/secrets/.npmrc /usr/src/core/ && npm install --prefix /usr/src/core/ && npm link balena-cli ) || res=1; rm /usr/src/core/.npmrc; exit $res
+RUN res=0; ( cp /run/secrets/.npmrc /usr/src/core/ && npm install --prefix /usr/src/core/ ) || res=1; rm /usr/src/core/.npmrc; exit $res
+
+# install balena cli
+RUN npm install balena-cli@${BALENA_CLI_VERSION} -g --production --unsafe-perm
 
 # copy source files
 COPY . /usr/src/core/
