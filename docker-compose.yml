@@ -5,8 +5,13 @@ services:
     build: ./exclave-control-center
     privileged: true
     labels:
-      io.balena.features.balena-api: 1
-      io.balena.features.supervisor-api: 1
+      io.balena.features.balena-api: '1'
       io.balena.features.dbus: '1'
-  # glider:
-  #   build: ./glider
+      io.balena.update.strategy: delete-then-download
+  testbotsdk:
+    build: ./testbotsdk
+    privileged: true
+    restart: always
+  glider:
+    build: ./glider
+    network_mode: host
