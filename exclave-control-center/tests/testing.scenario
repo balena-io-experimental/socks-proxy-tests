@@ -1,7 +1,5 @@
 [Scenario]
 Name=Socks5 Proxy Test!
 Description=quick test inside container
-Tests=balena-login
+Tests=socks-proxy
 Timeout=5000
-ExecStopFail=echo testbot.teardown(true)" | node testbot.js ${REPL_HOST}:5001
-ExecStopSucess=echo testbot.teardown(true)" | node testbot.js ${REPL_HOST}:5001

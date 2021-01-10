@@ -1,6 +1,6 @@
 [Test]
 WorkingDirectory=/usr/src/core/logic/scripts
-ExecStart=supervisor.sh
+ExecStart=./supervisor.sh
 Name=Configuring Host for the proxy
-require=balena-os-configure, testbot-flash-dut, testbot-poweron-dut
+Requires=balena-os-configure, testbot-poweron-dut
 Type=simple
