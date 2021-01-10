@@ -1,2 +1,4 @@
 exclave-control-center/node_modules
+testlockbot/node_modules
 .balena/secrets
+testbotsdk-ignore
