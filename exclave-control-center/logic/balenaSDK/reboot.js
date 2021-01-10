@@ -6,10 +6,11 @@ const balena = getSdk({
 	dataDirectory: os.userInfo().homedir + "/.balena"
 });
 
-async() => {
+(async() => {
+  console.log("Rebooting the DUT")
   await balena.models.device.reboot(process.env.DEVICE_UUID, function(error) {
     if (error) throw error;
     return 1
   });
   return 0
-}
+})()
