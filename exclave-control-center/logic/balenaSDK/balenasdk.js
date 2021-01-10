@@ -8,7 +8,8 @@ const balena = getSdk({
 
 const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount));
 
-async function deviceFinder(appName = "socks-device") {
+const deviceFinder = async (appName = "socks-device") => {
+  console.log(`Looking for the device in ${appName}`)
   const appsData = await balena.models.application.getAllWithDeviceServiceDetails()
   for (const appNumber in appsData) {
     if (appsData[appNumber]["app_name"] === appName) {
@@ -16,7 +17,7 @@ async function deviceFinder(appName = "socks-device") {
       const status = appsData[appNumber]["owns__device"][0]["api_heartbeat_state"]
       const os = appsData[appNumber]["owns__device"][0]["os_version"]
 
-      await require('fs').promises.writeFile("/root/.bashrc", `export DEVICE_UUID=${appsData[appNumber]["owns__device"][0]["uuid"]}`)
+      // await require('fs').promises.writeFile("/root/.bashrc", `export DEVICE_UUID=${appsData[appNumber]["owns__device"][0]["uuid"]}`)
       // await require('fs').promises.writeFile("/root/.bashrc", `export DEVICE_UUID=${appsData[appNumber]["owns__device"][0]["uuid"]} \n export SHORT_DEVICE_UUID=${appsData[appNumber]["owns__device"][0]["uuid"].substring(0, 7)}.local`)
 
       if (status === "online") {
@@ -25,6 +26,7 @@ async function deviceFinder(appName = "socks-device") {
       }
     }
   }
+  console.log("Waiting 30 seconds for it to show up ...")
   await wait(30000)
 }
 
