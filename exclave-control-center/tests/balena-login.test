@@ -1,4 +1,5 @@
 [Test]
-ExecStart=balena login --token "${CLI_API_KEY}"
+WorkingDirectory=/usr/src/core/logic/scripts
+ExecStart=./login.sh
 Name=balena login with token
 Type=simple

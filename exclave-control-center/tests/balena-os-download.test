@@ -1,5 +1,5 @@
 [Test]
 WorkingDirectory=/usr/src/core/logic/scripts
-ExecStart=balena os download raspberrypi3 -o /tmp/raspberrypi3.img --version v2.58.3+rev1.prod || exit 1
+ExecStart=balena os download raspberrypi3 -o /images/raspberrypi3.img --version v2.58.3+rev1.prod
 Name=balena os image download
 Type=simple

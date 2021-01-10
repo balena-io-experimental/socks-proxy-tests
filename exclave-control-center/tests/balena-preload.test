@@ -1,5 +1,5 @@
 [Test]
 WorkingDirectory=/usr/src/core/logic/scripts
-ExecStart=balena preload /tmp/raspberrypi3.img -a socks-device --pin-device-to-release -c current -P /var/run/docker.sock --debug
+ExecStart=balena preload /images/raspberrypi3.img -a socks-device --pin-device-to-release -c current -P /var/run/docker.sock --debug
 Name=balena-preload 
 Type=simple
