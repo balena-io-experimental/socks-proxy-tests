@@ -1,6 +1,4 @@
 [Test]
-WorkingDirectory=/usr/src/core/logic/testbotSDK
-ExecStart=echo "deviceInteractor.flashFromFile('/tmp/raspberrypi3.img')" | node testbot.js ${REPL_HOST}:5001 
+ExecStart=curl -X GET http://localhost:5001/flash
 Name=Flash the DUT
-require=balena-os-configure, testbot-setup-dut
 Type=simple

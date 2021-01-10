@@ -1,7 +1,4 @@
 [Test]
-WorkingDirectory=/usr/src/core/logic/testbotSDK
-ExecStart=echo "deviceInteractor.powerOff()" | node testbot.js ${REPL_HOST}:5001 
+ExecStart=curl -X GET http://localhost:5001/off
 Name=Power OFF the DUT
-ExecStopSucess=echo "testbot.teardown(true)" | node testbot.js ${REPL_HOST}:5001
-require=balena-os-configure, testbot-flash-dut
 Type=simple

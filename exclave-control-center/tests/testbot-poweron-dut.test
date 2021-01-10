@@ -1,7 +1,6 @@
 [Test]
-WorkingDirectory=/usr/src/core/logic/balenaSDK
-ExecStart=echo "deviceInteractor.powerOn()" | node testbot.js ${REPL_HOST}:5001 
+ExecStart=curl -X GET http://localhost:5001/on
 Name=Power On the DUT
-ExecStopSucess=node balenasdk.js
-require=balena-os-configure, testbot-flash-dut
+ExecStopSucess=node balenasdk.js; source /root/.bashrc
+Requires=testbot-flash-dut, balena-os-configure
 Type=simple
