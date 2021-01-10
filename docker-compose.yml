@@ -1,17 +1,35 @@
 version: '2'
 
+volumes:
+  os-images:
+
 services:
   exclave-control-center:
     build: ./exclave-control-center
     privileged: true
+    volumes:
+      - os-images:/images
     labels:
       io.balena.features.balena-api: '1'
       io.balena.features.dbus: '1'
-      io.balena.update.strategy: delete-then-download
-  testbotsdk:
-    build: ./testbotsdk
+  testblockbot:
+    build: ./testblockbot
     privileged: true
     restart: always
+    volumes:
+      - os-images:/images
+    expose:
+      - "5001"
   glider:
     build: ./glider
+    privileged: true
     network_mode: host
+    expose:
+      - "8123"
+
+  # testbotsdk:
+  #   build: ./testbotsdk
+  #   privileged: true
+  #   restart: always
+  #   volumes:
+  #     - os-images:/images
