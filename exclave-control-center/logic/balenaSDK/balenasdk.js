@@ -9,7 +9,7 @@ const balena = getSdk({
 const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount));
 
 const deviceFinder = async (appName = "socks-device") => {
-  console.log(`Looking for the device in ${appName}`)
+  console.count(`Looking for the device in ${appName}`)
   const appsData = await balena.models.application.getAllWithDeviceServiceDetails()
   for (const appNumber in appsData) {
     if (appsData[appNumber]["app_name"] === appName) {
