@@ -1,6 +1,7 @@
 [Test]
 WorkingDirectory=/usr/src/core/logic/scripts
-ExecStart=balena os configure /images/raspberrypi3.img -a socks-device --config-network wifi --config-wifi-key  --config-wifi-ssid 
+ExecStart=balena os configure /images/raspberrypi3.img -a socks-device --config-network wifi --config-wifi-key --config-wifi-ssid
 Name=balena os configure
-Requires=balena-login, balena-os-download, balena-app-create
+Requires=balena-login, balena-os-download
+Suggests=balena-app-create
 Type=simple
