@@ -13,13 +13,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/ping', (req, res) => {
-  console.log(`TestbotSDK-block listening at http://localhost:${SERVER_PORT}`);
+  console.log(`TestbotSDK-block listening at testblockbot:${SERVER_PORT}`);
   return res.status(200).send('OK');
 });
 
 app.listen(SERVER_PORT, asyncHandler( async() => {
   await testbot.setup()
-  console.log(`TestbotSDK-block listening at http://localhost:${SERVER_PORT}`);
+  console.log(`TestbotSDK-block listening at testblockbot:${SERVER_PORT}`);
 }));
 
 app.get('/on', asyncHandler(async (req, res) => {
