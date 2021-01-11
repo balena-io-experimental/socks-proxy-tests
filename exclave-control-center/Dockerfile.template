@@ -49,3 +49,4 @@ RUN chmod +x /usr/src/core/entry.sh && \
 CMD ["/usr/src/core/entry.sh"]
 
 VOLUME /images
+VOLUME /root/.balena/cache/
