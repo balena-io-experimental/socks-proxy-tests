@@ -1,4 +1,5 @@
 [Test]
-ExecStart=curl -X GET http://localhost:5001/flash
+ExecStart=curl -X GET localhost:5001/flash
 Name=Flash the DUT
+Requires=balena-os-configure
 Type=simple

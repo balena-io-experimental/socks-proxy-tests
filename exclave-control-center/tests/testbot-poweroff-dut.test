@@ -1,4 +1,4 @@
 [Test]
-ExecStart=curl -X GET http://localhost:5001/off
+ExecStart=curl -X GET localhost:5001/off
 Name=Power OFF the DUT
 Type=simple
