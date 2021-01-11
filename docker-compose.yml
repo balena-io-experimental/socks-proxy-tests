@@ -2,6 +2,7 @@ version: '2'
 
 volumes:
   os-images:
+  cache:
 
 services:
   exclave-control-center:
@@ -9,8 +10,10 @@ services:
     privileged: true
     volumes:
       - os-images:/images
+      - cache:/root/.balena/cache
     labels:
       io.balena.features.balena-api: '1'
+      io.balena.features.supervisor-api: '1'
       io.balena.features.dbus: '1'
   testblockbot:
     build: ./testblockbot
@@ -24,9 +27,8 @@ services:
     build: ./glider
     privileged: true
     network_mode: host
-    expose:
+    ports:
       - "8123"
-
   # testbotsdk:
   #   build: ./testbotsdk
   #   privileged: true

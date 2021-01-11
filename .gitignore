@@ -1,11 +1,4 @@
 exclave-control-center/node_modules
-<<<<<<< HEAD
-testblockbot/node_modules
-.balena/secrets
-testbotsdk-ignore
-testblockbot/node_modules/
-=======
 .balena/secrets
 testbotsdk-ignore
 testblockbot/node_modules
->>>>>>> Rename to SDK tests
