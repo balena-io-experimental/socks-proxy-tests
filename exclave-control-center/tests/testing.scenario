@@ -1,5 +1,5 @@
 [Scenario]
 Name=Socks5 Proxy Test!
 Description=quick test inside container
-Tests=socks-proxy
+Tests=EMPTY
 Timeout=5000

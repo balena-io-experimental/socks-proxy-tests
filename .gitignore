@@ -2,3 +2,6 @@ exclave-control-center/node_modules
 .balena/secrets
 testbotsdk-ignore
 testblockbot/node_modules
+
+# Adding to protect wifi-creds
+exclave-control-center/tests/balena-os-configure.test
