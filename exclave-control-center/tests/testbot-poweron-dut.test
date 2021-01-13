@@ -1,7 +1,6 @@
 [Test]
 WorkingDirectory=/usr/src/core/logic/balenaSDK
-ExecStart=curl -X GET testblockbot:5001/on
+ExecStart=/bin/bash -c "curl -X GET testblockbot:5001/on; node balenasdk.js; source /root/.bashrc"
 Name=Power On the DUT
-ExecStopSucess=/bin/bash -c "node balenasdk.js; source /root/.bashrc"
 Requires=testbot-flash-dut, balena-os-configure
 Type=simple

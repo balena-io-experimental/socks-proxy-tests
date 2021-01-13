@@ -1,5 +1,4 @@
 [Test]
-WorkingDirectory=/usr/src/core/logic/scripts
 ExecStart=balena push wifi-connect
 Name=balena push
 Type=simple

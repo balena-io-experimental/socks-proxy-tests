@@ -1,5 +1,4 @@
 [Test]
-WorkingDirectory=/usr/src/core/logic/scripts
 ExecStart=balena app create socks-device -o gh_vipulgupta2048 -t raspberrypi3
 Requires=balena-login
 Name=balena app create

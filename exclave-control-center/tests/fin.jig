@@ -1,5 +1,5 @@
 [Jig]
-Name=Dev Jig
+Name=Socks-proxy Jig
 Description=Development Jig 
 TestFile=/etc
 DefaultScenario=socks-proxy

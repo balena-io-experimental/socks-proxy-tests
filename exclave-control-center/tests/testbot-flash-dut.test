@@ -1,5 +1,5 @@
 [Test]
-ExecStart=curl -X GET testblockbot:5001/flash?path=/images/raspberrypi3.img
+ExecStart=curl -vv testblockbot:5001/flash?path=/images/raspberrypi3.img
 Name=Flash the DUT
 Requires=balena-os-configure
 Type=simple
