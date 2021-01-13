@@ -1,10 +1,13 @@
 const { getSdk } = require('balena-sdk');
 const os = require("os")
+import {deviceFinder} from "./balenasdk"
 
 const balena = getSdk({
   apiUrl: "https://api.balena-cloud.com/",
   dataDirectory: os.userInfo().homedir + "/.balena"
 });
+
+const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount));
 
 // This is called an IIFE - Immediately-Invoked Function Expression
 (async () => {
@@ -13,5 +16,6 @@ const balena = getSdk({
     if (error) throw error;
     return 1
   });
+  deviceFinder(process.argv[2])
   return 0
 })()
