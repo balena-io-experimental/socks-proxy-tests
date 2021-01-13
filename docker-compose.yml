@@ -25,10 +25,10 @@ services:
       - "5001"
   glider:
     build: ./glider
-    privileged: true
-    network_mode: host
+    restart: always
     ports:
-      - "8123"
+      - "8123:8123/tcp"
+      - "8123:8123/udp"
   # testbotsdk:
   #   build: ./testbotsdk
   #   privileged: true
