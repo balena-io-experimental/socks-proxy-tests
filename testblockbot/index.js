@@ -44,8 +44,8 @@ app.get('/off', asyncHandler(async (req, res) => {
 }))
 
 app.get('/flash', asyncHandler(async (req, res) => {
-  await deviceInteractor.flashFromFile(req.query.path);
-  return res.status(200).send(`DUT has been flashed with ${req.query.path} \n`)
+  await deviceInteractor.flashFromFile("/images/raspberrypi3.img")
+  res.status(200).send("Flashing Complete")
 }))
 
 // Functionality coming soon in a block near you
