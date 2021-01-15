@@ -1,5 +1,6 @@
 [Test]
-ExecStart=curl -vv testblockbot:5001/flash?path=/images/raspberrypi3.img
+WorkingDirectory=/usr/src/core/logic/scripts
+ExecStart=./check-flash-progress.sh
 Name=Flash the DUT
-Requires=balena-os-configure
+Requires=balena-os-configure, testbot-poweroff-dut
 Type=simple

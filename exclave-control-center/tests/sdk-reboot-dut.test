@@ -1,6 +1,6 @@
 [Test]
 WorkingDirectory=/usr/src/core/logic/balenaSDK
-ExecStart=/bin/bash -c "node reboot.js; source /root/.bashrc"
+ExecStart=/bin/bash -c "source /root/.bashrc; node reboot.js; node balenasdk.js"
 Name=Reboot the DUT through balenaSDK
 Requires=supervisor-host-config
 Type=simple
