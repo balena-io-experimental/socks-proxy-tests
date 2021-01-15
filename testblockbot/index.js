@@ -7,6 +7,9 @@ const testbot = new TestBotHat((msg) => console.log(`testbot: ${msg}`));
 const deviceInteractor = new RaspberryPi(testbot);
 const app = express()
 const SERVER_PORT = 5001
+let flashStatus = ""
+const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount));
+
 
 app.get('/', (req, res) => {
   console.log(`Testblockbot listening at testblockbot:${SERVER_PORT}`);
@@ -44,15 +47,20 @@ app.get('/off', asyncHandler(async (req, res) => {
 }))
 
 app.get('/flash', asyncHandler(async (req, res) => {
+  if (!req.query.path) {
+    res.status(400).send(`BAD REQUEST, path of the image missing maybe. Please specify the path for example: testblockbot:5001/flash?path=/images/raspberrypi3.img \n`)
+  }
+  res.status(200).send(`Flashing ${req.query.path} \n`)
   await deviceInteractor.flashFromFile(req.query.path)
-  return res.status(200).send("Flashing Complete")
+  flashStatus = "Flashing Completed"
+  return flashStatus
 }))
 
-// Functionality coming soon in a block near you
-// Status of DUT, needs serial logging setup to be done beforehand
-// app.get('/status', async (req, res) => {
-//   try {
-//   } catch (error) {
-//     return next(error)
-//   }
-// })
+app.get('/flash-progress', (req, res) => {
+  if (flashStatus === "Flashing Completed") {
+    res.status(200).send(flashStatus)
+    flashStatus = ""
+    return flashStatus
+  }
+  res.end()
+})
