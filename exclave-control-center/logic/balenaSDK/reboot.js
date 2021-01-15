@@ -1,6 +1,6 @@
 const { getSdk } = require('balena-sdk');
 const os = require("os")
-import {deviceFinder} from "./balenasdk"
+// const {deviceFinder} = require("./balenasdk")
 
 const balena = getSdk({
   apiUrl: "https://api.balena-cloud.com/",
@@ -16,6 +16,7 @@ const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount))
     if (error) throw error;
     return 1
   });
-  deviceFinder(process.argv[2])
+  await wait(5000)
+  // deviceFinder(process.argv[2])
   return 0
 })()

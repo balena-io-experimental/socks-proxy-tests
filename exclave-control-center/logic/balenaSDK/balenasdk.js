@@ -11,7 +11,7 @@ const balena = getSdk({
 const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount));
 
 // Function to locate the first device online in the balenaCloud application provided 
-export const deviceFinder = async (appName = "socks-device") => {
+const deviceFinder = async (appName = "socks-device") => {
   console.log(`Looking for online devices in ${appName}`)
   for (let step = 0; step < 24; step++) {
     const appsData = await balena.models.application.getAllWithDeviceServiceDetails()
@@ -33,14 +33,18 @@ export const deviceFinder = async (appName = "socks-device") => {
     console.log("Waiting 10 seconds for it to show up ...")
     await wait(10000)
   }
+  console.log("Can't find any online devices. Exiting ...")
 }
+
+module.exports = {deviceFinder}
 
 try {
   deviceFinder(process.argv[2])
-  return 0
+  return 1
 } catch (err) {
   console.log(`Test unsuccessful: ${err}`)
   return 1
 }
+
 
 // await require('fs').promises.writeFile("/root/.bashrc", `export DEVICE_UUID=${appsData[appNumber]["owns__device"][device]["uuid"]} \n export SHORT_DEVICE_UUID=${appsData[appNumber]["owns__device"][device]["uuid"].substring(0, 7)}.local`)

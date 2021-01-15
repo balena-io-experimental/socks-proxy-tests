@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "balena-sdk": "^15.21.1",
-    "@balena/testbot": "^1.7.2"
+    "balena-sdk": "^15.21.1"
   }
 }
