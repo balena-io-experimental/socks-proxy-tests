@@ -1,6 +1,6 @@
 const { getSdk } = require('balena-sdk');
 const os = require("os")
-// const {deviceFinder} = require("./balenasdk")
+// const {deviceFinder} = require("./devicefinder")
 
 const balena = getSdk({
   apiUrl: "https://api.balena-cloud.com/",
