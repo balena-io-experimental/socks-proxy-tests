@@ -1,0 +1,4 @@
+[Test]
+ExecStart=/bin/bash -c "source /root/.bashrc;  balena logs ${DEVICE_UUID} --service glider --tail | grep """
+Name=Check Glider Logs
+Type=simple

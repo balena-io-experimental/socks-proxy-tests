@@ -1,0 +1,5 @@
+[Test]
+WorkingDirectory=/usr/src/core/logic/scripts
+ExecStart=./supervisor-remove-host-config.sh
+Name=Removing Host Config from the DUT
+Type=simple
