@@ -29,9 +29,3 @@ services:
     ports:
       - "8123:8123/tcp"
       - "8123:8123/udp"
-  # testbotsdk:
-  #   build: ./testbotsdk
-  #   privileged: true
-  #   restart: always
-  #   volumes:
-  #     - os-images:/images

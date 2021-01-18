@@ -8,7 +8,6 @@ const deviceInteractor = new RaspberryPi(testbot);
 const app = express()
 const SERVER_PORT = 5001
 let flashStatus = ""
-const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount));
 
 
 app.get('/', (req, res) => {
