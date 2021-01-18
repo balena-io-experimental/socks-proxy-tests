@@ -1,0 +1,5 @@
+[Test]
+ExecStart=/bin/bash -c "source /root/.bashrc; balena device reboot "${DEVICE_UUID}"; node devicefinder.js"
+Name=balena reboot
+Requires=supervisor-remove-host-config
+Type=simple

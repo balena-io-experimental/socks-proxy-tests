@@ -1,5 +1,5 @@
 [Test]
 WorkingDirectory=/usr/src/core/logic/balenaSDK
-ExecStart=/bin/bash -c "node balenasdk.js; source /root/.bashrc"
+ExecStart=/bin/bash -c "node devicefinder.js; source /root/.bashrc"
 Name=check if DUT is online on the dashboard 
 Type=simple
