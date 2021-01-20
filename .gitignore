@@ -1,6 +1,7 @@
 exclave-control-center/node_modules
 .balena/secrets
 testblockbot/node_modules
+glider_logs
 
 # Adding to protect wifi-creds
 exclave-control-center/tests/balena-os-configure.test
