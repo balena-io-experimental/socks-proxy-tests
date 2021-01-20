@@ -1,5 +1,6 @@
 [Test]
-ExecStart=/bin/bash -c "source /root/.bashrc; balena device reboot "${DEVICE_UUID}"; node devicefinder.js"
+WorkingDirectory=/usr/src/core/logic/balenaSDK
+ExecStart=/bin/bash -c "source /root/.bashrc; balena device reboot "${DUT_UUID}"; echo "Rebooting DUT"; sleep 10; node devicefinder.js"
 Name=balena reboot
 Requires=supervisor-remove-host-config
 Type=simple
