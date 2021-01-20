@@ -10,12 +10,11 @@ ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 
 # hadolint ignore=DL3008, added nano for debugging, remove in final build
 RUN apk add --no-cache \
-    git \
+    git jq \
     ca-certificates \
     rust \
     cargo \
-    musl-dev \
-    nano
+    musl-dev 
 
 # set the SHELL option -o pipefail before RUN with a pipe in
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -27,6 +26,8 @@ WORKDIR /usr/src/exclave
 
 # clone & build exclave
 RUN git clone https://github.com/balena-io-playground/exclave . && cargo build 
+
+# RUN git clone https://github.com/Miserlou/Loop .. && cargo build 
 
 COPY package* /usr/src/core/
 
@@ -41,9 +42,7 @@ COPY . /usr/src/core/
 
 # enable execute permissions for scripts
 RUN chmod +x /usr/src/core/entry.sh && \
-    chmod +x /usr/src/core/logic/scripts/*.sh && \
-    apk add jq
-    # chmod +x /usr/src/core/logic/scripts/*.bash
+    chmod +x /usr/src/core/logic/scripts/*.sh 
 
 CMD ["/usr/src/core/entry.sh"]
 
