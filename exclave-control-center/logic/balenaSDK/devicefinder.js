@@ -23,7 +23,7 @@ const deviceFinder = async (appName = "socks-device") => {
           let OS = appsData[appNumber]["owns__device"][device]["os_version"]
 
           if (status === true) {
-            await require('fs').promises.writeFile("/root/.bashrc", `export DEVICE_UUID=${appsData[appNumber]["owns__device"][device]["uuid"]}`)
+            await require('fs').promises.writeFile("/root/.bashrc", `export DUT_UUID=${appsData[appNumber]["owns__device"][device]["uuid"]}`)
             console.log(`Found an online device named ${deviceName} running ${OS}`)
             return 0
           }
@@ -47,4 +47,4 @@ try {
 }
 
 
-// await require('fs').promises.writeFile("/root/.bashrc", `export DEVICE_UUID=${appsData[appNumber]["owns__device"][device]["uuid"]} \n export SHORT_DEVICE_UUID=${appsData[appNumber]["owns__device"][device]["uuid"].substring(0, 7)}.local`)
+// await require('fs').promises.writeFile("/root/.bashrc", `export DUT_UUID=${appsData[appNumber]["owns__device"][device]["uuid"]} \n export SHORT_DUT_UUID=${appsData[appNumber]["owns__device"][device]["uuid"].substring(0, 7)}.local`)
