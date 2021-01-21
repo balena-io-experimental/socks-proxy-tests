@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 20
+sleep 30
 source /root/.bashrc
 
 # # https://www.balena.io/docs/reference/supervisor/supervisor-api/#patch-v1devicehost-config
