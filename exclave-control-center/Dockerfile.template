@@ -29,13 +29,12 @@ RUN git clone https://github.com/balena-io-playground/exclave . && cargo build
 
 # RUN git clone https://github.com/Miserlou/Loop .. && cargo build 
 
+# install balena cli
+RUN npm install balena-cli@${BALENA_CLI_VERSION} -g --production --unsafe-perm 
+
 COPY package* /usr/src/core/
 
-# NPM install (Don't merge this RUN line, took me hours of debugging to see what was going wrong when it was paired up)
-RUN res=0; ( cp /run/secrets/.npmrc /usr/src/core/ && npm install --prefix /usr/src/core/ ) || res=1; rm /usr/src/core/.npmrc; exit $res
-
-# install balena cli
-RUN npm install balena-cli@${BALENA_CLI_VERSION} -g --production --unsafe-perm
+RUN npm install
 
 # copy source files
 COPY . /usr/src/core/
